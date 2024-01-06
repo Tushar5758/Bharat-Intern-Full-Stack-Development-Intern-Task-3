@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KhataBook App</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #4CAF50;
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    main {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .add-transaction {
+      background-color: #fff;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      margin-bottom: 10px;
+    }
+
+    input, select {
+      margin-bottom: 15px;
+      padding: 8px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .transactions {
+      background-color: #fff;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .income {
+      color: #4CAF50;
+    }
+
+    .expense {
+      color: #d9534f;
+    }
+
+    .balance {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>KhataBook</h1>
+  </header>
+  <main>
+    <div class="add-transaction">
+      <h2>Add a Transaction</h2>
+      <form action="/add-transaction" method="post">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required>
+        <label for="amount">Amount:</label>
+        <input type="double" id="amount" name="amount" required>
+        <label for="type">Type:</label>
+        <select id="type" name="type" required>
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+        <button type="submit">Add Transaction</button>
+      </form>
+    </div>
+    <div class="transactions">
+      <h2>Transactions</h2>
+      <% transactions.forEach(transaction => { %>
+        <div class="<%= transaction.type %>">
+          <p><%= transaction.description %> - <%= transaction.amount %> Rupees</p>
+        </div>
+      <% }); %>
+      <div class="balance">
+        <h2>Balance: <%= balance %> Rupees</h2>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
